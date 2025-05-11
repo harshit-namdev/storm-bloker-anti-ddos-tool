@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Blocker Pro V2 - Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Storm Blocker Pro V2</div>
+                <div class="user-menu">
+                    <span class="status-badge status-normal">System Active</span>
+                    <button class="btn btn-secondary">{{ current_user.email }}</button>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <!-- Overview Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Overview</h2>
+                    <div class="status-badge status-normal" id="system-status">Protected</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-requests">0</div>
+                        <div class="stat-label">Total Requests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="blocked-attacks">0</div>
+                        <div class="stat-label">Blocked Attacks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="active-sites">0</div>
+                        <div class="stat-label">Protected Sites</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Site Configuration -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Site Configuration</h2>
+                </div>
+                <form id="site-config-form">
+                    <div class="form-group">
+                        <label class="form-label" for="site-name">Site Name</label>
+                        <input type="text" id="site-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="rate-limit">Rate Limit (requests/min)</label>
+                        <input type="number" id="rate-limit" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="alert-threshold">Alert Threshold</label>
+                        <input type="number" id="alert-threshold" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Protection Features</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="enable-geo"> Geo-blocking</label>
+                            <label><input type="checkbox" id="enable-alerts"> Email Alerts</label>
+                            <label><input type="checkbox" id="maintenance-mode"> Maintenance Mode</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                </form>
+            </div>
+
+            <!-- Real-time Monitoring -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Real-time Monitoring</h2>
+                    <button class="btn btn-secondary" id="refresh-stats">Refresh</button>
+                </div>
+                <div class="stats-container">
+                    <canvas id="traffic-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Recent Activity</h2>
+                </div>
+                <div class="activity-list" id="activity-feed">
+                    <!-- Activity items will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2024 Anti-DDoS Tool. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
