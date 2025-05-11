@@ -17,6 +17,8 @@
 - **Traffic Diversion:** Automatically divert or balance traffic to less loaded pages or instances when a particular page is under heavy load.
 - **Web Dashboard:** Intuitive dashboard for managing all features and viewing analytics.
 
+![Terminal Screenshot](https://github.com/harshit-namdev/storm-bloker-anti-ddos-tool/blob/main/Images%2FStrom%20Blocker%20Image.png)
+
 ## How It Works
 
 1. **Monitor:** The tool continuously monitors traffic for each registered client site.
